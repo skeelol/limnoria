@@ -42,8 +42,8 @@ conf.registerGlobalValue(conf.supybot.plugins, 'anthropic',
 conf.registerGlobalValue(conf.supybot.plugins.anthropic, 'apiKey',
     registry.String('', '''Your Anthropic API key for accessing Claude models. Keep this secret!''', private=True))
 
-conf.registerChannelValue(Recap, 'enabled',
-    registry.Boolean(True, '''Enable or disable the Recap plugin for this channel.'''))
+conf.registerGlobalValue(Recap, 'enabled',
+    registry.Boolean(True, '''Enable or disable the Recap plugin.'''))
 
 conf.registerGlobalValue(Recap, 'defaultHours',
     registry.PositiveInteger(5, '''Default number of hours to include in a recap summary.'''))
