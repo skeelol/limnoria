@@ -78,7 +78,7 @@ class Recap(callbacks.Plugin):
             return
         
         # Check if plugin is enabled for this channel
-        if not config.Recap.enabled.get(channel):
+        if not self.registryValue('enabled', channel):
             return
         
         self._initialize_channel(channel)
@@ -102,7 +102,7 @@ class Recap(callbacks.Plugin):
             return []
         
         cutoff_time = time.time() - (hours * 3600)
-        max_messages = config.Recap.maxMessages()
+        max_messages = self.registryValue('maxMessages')
         
         # Collect messages within time window
         messages = []
@@ -190,16 +190,16 @@ Provide a brief, factual summary:"""
         channel = msg.args[0]
         
         # Check if plugin is enabled for this channel
-        if not config.Recap.enabled.get(channel):
+        if not self.registryValue('enabled', channel):
             irc.reply("Recap plugin is not enabled for this channel.")
             return
         
         # Set default hours if not provided
         if not hours:
-            hours = config.Recap.defaultHours()
+            hours = self.registryValue('defaultHours')
         
         # Validate hours
-        max_hours = config.Recap.maxHours()
+        max_hours = self.registryValue('maxHours')
         if hours > max_hours:
             irc.reply(f"Maximum recap duration is {max_hours} hours. Using {max_hours} hours instead.")
             hours = max_hours
