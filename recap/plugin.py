@@ -78,7 +78,7 @@ class Recap(callbacks.Plugin):
             return
         
         # Check if plugin is enabled for this channel
-        if not config.Recap.enabled.getChannelValue(channel):
+        if not config.Recap.enabled.get(channel):
             return
         
         self._initialize_channel(channel)
@@ -190,7 +190,7 @@ Provide a brief, factual summary:"""
         channel = msg.args[0]
         
         # Check if plugin is enabled for this channel
-        if not config.Recap.enabled.getChannelValue(channel):
+        if not config.Recap.enabled.get(channel):
             irc.reply("Recap plugin is not enabled for this channel.")
             return
         
