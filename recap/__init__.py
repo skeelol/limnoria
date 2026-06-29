@@ -35,7 +35,6 @@ Recap plugin for Limnoria - Summarizes chat activity using Claude Haiku.
 
 import supybot
 from supybot import world
-from supybot.plugins import registerPlugin
 
 __version__ = '0.1.0'
 __author__ = supybot.Author('skeelol', 'skeelol', 'skeelol@example.com')
@@ -50,4 +49,3 @@ from . import plugin
 Class = plugin.Recap
 
 conf = config.conf
-registerPlugin('Recap')
