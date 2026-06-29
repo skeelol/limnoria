@@ -39,7 +39,7 @@ try:
     import anthropic
 except ImportError:
     raise callbacks.Error('This plugin requires the anthropic package. '
-                         'Install it with: pip install anthropic')
+                         'Install it with: pip install anthropic==0.7.1')
 
 from . import config
 
@@ -183,14 +183,10 @@ Provide a brief, factual summary:"""
         """[<hours>]
         
         Summarizes the past <hours> of channel activity. If <hours> is not specified,
-        defaults to {0} hours. Maximum is {1} hours.
+        defaults to 5 hours. Maximum is 24 hours.
         
         Example: !recap or !recap 3
-        """.format(
-            config.Recap.defaultHours(),
-            config.Recap.maxHours()
-        )
-        
+        """
         channel = msg.args[0]
         
         # Check if plugin is enabled for this channel
