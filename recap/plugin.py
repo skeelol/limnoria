@@ -77,8 +77,8 @@ class Recap(callbacks.Plugin):
         if not irc.isChannel(channel):
             return
         
-        # Check if plugin is enabled for this channel
-        if not self.registryValue('enabled', channel):
+        # Check if plugin is enabled
+        if not self.registryValue('enabled'):
             return
         
         self._initialize_channel(channel)
@@ -189,9 +189,9 @@ Provide a brief, factual summary:"""
         """
         channel = msg.args[0]
         
-        # Check if plugin is enabled for this channel
-        if not self.registryValue('enabled', channel):
-            irc.reply("Recap plugin is not enabled for this channel.")
+        # Check if plugin is enabled
+        if not self.registryValue('enabled'):
+            irc.reply("Recap plugin is not enabled.")
             return
         
         # Set default hours if not provided
