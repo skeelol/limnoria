@@ -28,7 +28,8 @@
 
 ###
 
-from supybot import conf, registry
+import supybot.conf as conf
+import supybot.registry as registry
 
 def configure(advanced):
     conf.registerPlugin('Recap', True)
@@ -41,14 +42,14 @@ conf.registerGlobalValue(conf.supybot.plugins, 'anthropic',
 conf.registerGlobalValue(conf.supybot.plugins.anthropic, 'apiKey',
     registry.String('', '''Your Anthropic API key for accessing Claude models. Keep this secret!''', private=True))
 
-Recap.registerChannelValue(registry.Boolean, 'enabled',
-    True, '''Enable or disable the Recap plugin for this channel.''')
+conf.registerChannelValue(Recap, 'enabled',
+    registry.Boolean(True, '''Enable or disable the Recap plugin for this channel.'''))
 
-Recap.registerGlobalValue(registry.PositiveInteger, 'defaultHours',
-    5, '''Default number of hours to include in a recap summary.''')
+conf.registerGlobalValue(Recap, 'defaultHours',
+    registry.PositiveInteger(5, '''Default number of hours to include in a recap summary.'''))
 
-Recap.registerGlobalValue(registry.PositiveInteger, 'maxHours',
-    24, '''Maximum number of hours that can be summarized in a single recap.''')
+conf.registerGlobalValue(Recap, 'maxHours',
+    registry.PositiveInteger(24, '''Maximum number of hours that can be summarized in a single recap.'''))
 
-Recap.registerGlobalValue(registry.PositiveInteger, 'maxMessages',
-    500, '''Maximum number of messages to include in a recap to minimize token usage.''')
+conf.registerGlobalValue(Recap, 'maxMessages',
+    registry.PositiveInteger(500, '''Maximum number of messages to include in a recap to minimize token usage.'''))
