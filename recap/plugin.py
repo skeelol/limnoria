@@ -28,16 +28,12 @@
 
 ###
 
-import supybot.utils as utils
 from supybot.commands import *
-import supybot.plugins as plugins
 from supybot import callbacks
-from supybot.utils.str import privmsg_format
 
 import time
 from collections import deque
-from datetime import datetime, timedelta
-import textwrap
+from datetime import datetime
 
 try:
     import anthropic
